@@ -46,24 +46,27 @@ def update_std(request,roll):
 
     return render(request,"register/update_std.html",{'std':std})
 def do_update_std(request,roll):
-    std_roll = request.POST.get("std_roll")
-    std_name = request.POST.get("std_name")
-    std_address = request.POST.get("std_address")
-    std_course = request.POST.get("std_course")
-    std_email = request.POST.get("std_email")
-    std_phone = request.POST.get("std_phone")
-    std_semester = request.POST.get("std_semester")
-    std_language = request.POST.get("std_language")
+    if request.method == "POST":
+        std_roll = request.POST.get("std_roll")
+        std_name = request.POST.get("std_name")
+        std_address = request.POST.get("std_address")
+        std_course = request.POST.get("std_course")
+        std_email = request.POST.get("std_email")
+        std_phone = request.POST.get("std_phone")
+        std_semester = request.POST.get("std_semester")
+        std_language = request.POST.get("std_language")
 
-    s = Student.objects.get(pk=roll)
-    s.roll = std_roll
-    s.name = std_name
-    s.address = std_address
-    s.course = std_course
-    s.email = std_email
-    s.phone = std_phone
-    s.semester = std_semester
-    s.language = std_language
+        s = Student.objects.get(pk=roll)
+        s.roll = std_roll
+        s.name = std_name
+        s.address = std_address
+        s.course = std_course
+        s.email = std_email
+        s.phone = std_phone
+        s.semester = std_semester
+        s.language = std_language
 
-    s.save()
-    return redirect("/register/home")
+        s.save()
+        return redirect("/register/home")
+
+    return render(request, "register/add_std.html")

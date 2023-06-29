@@ -8,7 +8,7 @@ class Student(models.Model):
     address = models.CharField(max_length=300, default="")
     phone = models.CharField(max_length=10, default=0)
     course = models.CharField(max_length=300, default="")
-    semester = models.IntegerField( blank = True, null = True)
-    language = models.CharField(max_length=50, blank = True, null = True)
+    semester = models.IntegerField(default=1)
+    language = models.CharField(max_length=50, default="", null=True, blank=True)
 
 
